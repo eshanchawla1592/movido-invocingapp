@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "f18cfe4c-22ec-4267-bbb9-d3bfff2fc3c7",
+		"name": "InvoivingApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30461094"
+	},
+	"item": [
+		{
+			"name": "PostCustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerName\": \"{{$randomUserName}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"email\": \"{{$randomEmail}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostSubscription",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"created_date\": \"2024-02-26\",\n  \"duration\": 12,\n  \"durationUnits\": \"string\",\n  \"billingFrequency\": 3,\n  \"billingFrequencyUnits\": \"string\",\n  \"price\": 0,\n  \"currency\": \"string\",\n  \"productCode\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/bd71b691-0a81-4c99-b403-53193fc1269d/subscription",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"bd71b691-0a81-4c99-b403-53193fc1269d",
+						"subscription"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSubscription",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"created_date\": \"2024-02-26\",\n  \"duration\": 12,\n  \"durationUnits\": \"string\",\n  \"billingFrequency\": 3,\n  \"billingFrequencyUnits\": \"string\",\n  \"price\": 0,\n  \"currency\": \"string\",\n  \"productCode\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/f6f97375-246e-417f-81bc-80327a136d43/subscription/61a7267d-153a-4825-889f-d0d0bd15aac9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"f6f97375-246e-417f-81bc-80327a136d43",
+						"subscription",
+						"61a7267d-153a-4825-889f-d0d0bd15aac9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCustomer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerName\": \"string\",\n  \"phoneNumber\": \"string\",\n  \"email\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/f6f97375-246e-417f-81bc-80327a136d43",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"f6f97375-246e-417f-81bc-80327a136d43"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BillCustomer-Internal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/internal/bill-customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"internal",
+						"bill-customer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
