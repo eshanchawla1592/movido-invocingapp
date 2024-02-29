@@ -15,3 +15,7 @@ localhost:8000
 ## Database Schema
 
 [![Db Schema](./db-schema.png)](https://github.com/eshanchawla1592/movido-invocingapp/blob/main/db-schema.png)
+
+## System Workflow
+
+[![System Workflow](./control-flow.png)](https://github.com/eshanchawla1592/movido-invocingapp/blob/main/control-flow.png)
