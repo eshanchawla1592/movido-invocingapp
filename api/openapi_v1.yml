@@ -1,0 +1,166 @@
+openapi: 3.0.0
+info:
+  title: Interactive Customer Invoicing API
+  version: 1.0.0
+tags:
+  - name: Customer
+    description: Operations used by the presenting webapp
+servers:
+  - url: https://localhost:8080
+paths:
+  /customers:
+    post:
+      summary: Creates a new customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "201":
+          description: Customer created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer_id:
+                    type: string
+                    format: uuid
+                    example: 123e4567-e89b-12d3-a456-426614174000
+        "400":
+          description: Mandatory body parameters missing or have incorrect type.
+        "500":
+          description: Server Error
+      tags:
+        - Customer
+  /customers/{customer_id}:
+    parameters:
+      - in: path
+        name: customer_id
+        schema:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        required: true
+    get:
+      summary: Reading the specified customer
+      responses:
+        "200":
+          description: Returning a Presentation object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "404":
+          description: There is no presentation with the provided `presentation_id`
+        "500":
+          description: There are no polls currently displayed
+      tags:
+        - Customer
+  /customers/{customer_id}/subscription:
+    parameters:
+      - in: path
+        name: customer_id
+        schema:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        required: true
+    post:
+      summary: Reading the specified customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer_id:
+                    type: string
+                    format: uuid
+                    example: 123e4567-e89b-12d3-a456-426614174000
+
+        "404":
+          description: There is no presentation with the provided `presentation_id`
+        "500":
+          description: There are no polls currently displayed
+      tags:
+        - Customer
+  /customers/{customer_id}/subscription/{subscription_id}:
+    parameters:
+      - in: path
+        name: customer_id
+        schema:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        required: true
+      - in: path
+        name: subscription_id
+        schema:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        required: true
+    get:
+      summary: Reading the specified subscription
+      responses:
+        "200":
+          description: Returning a Presentation object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+        "404":
+          description: There is no presentation with the provided `presentation_id`
+        "500":
+          description: There are no polls currently displayed
+      tags:
+        - Customer
+
+components:
+  schemas:
+    Customer:
+      type: object
+      required:
+        - customerName
+        - phoneNumber
+        - email
+      properties:
+        customerName:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+    Subscription:
+      type: object
+      required:
+        - current_poll_index
+        - polls
+      properties:
+        created_date:
+          type: string
+        duration:
+          type: string
+        durationUnits:
+          type: string
+        BillingFrequency:
+          type: string
+        billingFrequencyUnits:
+          type: string
+        price:
+          type: number
+        currency:
+          type: string
+        productCode:
+          type: string
